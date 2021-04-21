@@ -3,8 +3,8 @@ title: "RDD"
 author: "Areeya Aksornpan"
 date: "4/15/2021"
 output:
-  pdf_document: default
   word_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -48,8 +48,8 @@ ps_logit <-
 ```
 ### Part C
 ```{r}
-tx_ctrl_labs <- c("Control", "Treatment")
-names(tx_ctrl_labs) <- c("0", "1")
+ct_tm <- c("Control", "Treatment")
+names(ct_tm) <- c("0", "1")
 ```
 
 ```{r lpm}
@@ -59,7 +59,7 @@ ps_lpm %>%
   geom_histogram(aes(x = p_score), fill = 'blue', color = 'navy', alpha = 0.8) + 
   labs(x = "Propensity Score", y = "Density") +
   theme_clean() + 
-  facet_grid(. ~ treat, labeller = labeller(treat = tx_ctrl_labs)) 
+  facet_grid(. ~ treat, labeller = labeller(treat = ct_tm)) 
 # LPM Max and Min
 ps_lpm %>%
   group_by(treat) %>%
@@ -76,7 +76,7 @@ ps_logit %>%
   geom_histogram(aes(x = p_score), fill = 'blue', color = 'navy', alpha = 0.8) + 
   labs(x = "Propensity Score", y = "Density") +
   theme_clean() + 
-  facet_grid(. ~ treat, labeller = labeller(treat = tx_ctrl_labs)) 
+  facet_grid(. ~ treat, labeller = labeller(treat = ct_tm)) 
 # Logit Max and Min
 ps_logit %>%
   group_by(treat) %>%
@@ -96,7 +96,7 @@ ps_lpm %>%
   geom_histogram(aes(x = p_score), fill = 'blue', color = 'navy', alpha = 0.8) + 
   labs(x = "Propensity Score", y = "Density") +
   theme_clean() + 
-  facet_grid(. ~ treat, labeller = labeller(treat = tx_ctrl_labs)) 
+  facet_grid(. ~ treat, labeller = labeller(treat = ct_tm)) 
 # LPM Max and Min (between 0.1 and 0.9)
 ps_lpm %>%
   filter(between(p_score, 0.1, 0.9)) %>%
@@ -115,7 +115,7 @@ ps_logit %>%
   geom_histogram(aes(x = p_score), fill = 'blue', color = 'navy', alpha = 0.8) + 
   labs(x = "Propensity Score", y = "Density") +
   theme_clean() + 
-  facet_grid(. ~ treat, labeller = labeller(treat = tx_ctrl_labs)) 
+  facet_grid(. ~ treat, labeller = labeller(treat = ct_tm)) 
 # Logit -- max/min // filtered
 ps_logit %>%
   filter(between(p_score, 0.1, 0.9)) %>%
